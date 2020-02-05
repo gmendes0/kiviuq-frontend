@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ field, type, label, onChange }) {
+export default function Input({ field, type, label, onChange, placeholder }) {
   return (
     <div className="form-group row">
       <label htmlFor={field} className="col-form-label col-md-3 text-sm-right">
@@ -12,6 +12,7 @@ export default function Input({ field, type, label, onChange }) {
           type={type}
           id={field}
           onChange={onChange}
+          placeholder={placeholder}
         />
       </div>
     </div>
