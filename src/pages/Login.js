@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
+import { Link } from "react-router-dom";
 
 import Input from "../components/Input";
 import Form from "../components/Form";
@@ -7,12 +8,14 @@ import Form from "../components/Form";
 export default function Login({ history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [btnText, setBtnText] = useState("Login");
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) history.push("/");
   }, []);
 
   async function handleSubmit() {
+    setBtnText("Autenticando...");
     const response = await api
       .post(
         "/authenticate",
@@ -27,6 +30,8 @@ export default function Login({ history }) {
         }
       )
       .catch(error => console.log(error.response));
+
+    setBtnText("Login");
 
     if (!response) return null;
 
@@ -57,8 +62,13 @@ export default function Login({ history }) {
           onChange={event => setPassword(event.target.value)}
         />
         <button className="btn btn-success mt-4" onClick={handleSubmit}>
-          Login
+          {btnText}
         </button>
+        <div>
+          <Link className="small text-center" to="/register">
+            Não possui uma conta? Registre-se agora.
+          </Link>
+        </div>
       </Form>
     </div>
   );
