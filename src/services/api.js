@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://kiviuq.herokuapp.com"
+  baseURL: "https://kiviuq-api.herokuapp.com"
 });
 
 export default api;
